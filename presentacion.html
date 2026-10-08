@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Copenhague: Viernes a Lunes (presentación 100% seria)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bangers&family=Comic+Neue:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fff7c2; --ink:#1a0033; --hot:#ff0080; --lime:#b6ff00; --cyan:#00e5ff; --sun:#ffe600; --nav:#1a0033; --navtext:#fff200;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --paper:#2a0a3d; --ink:#fff7c2; --nav:#000; --navtext:#b6ff00; }
+}
+:root[data-theme="dark"]{ --paper:#2a0a3d; --ink:#fff7c2; --nav:#000; --navtext:#b6ff00; }
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;height:100%;background:var(--paper);color:var(--ink);font-family:'Comic Neue','Comic Sans MS','Chalkboard SE',cursive,sans-serif;font-size:clamp(15px,2.1vw,21px);font-weight:700;display:flex;flex-direction:column;overflow:hidden}
+#deck{flex:1;min-height:0;position:relative}
+.slide{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;padding:clamp(14px,3vw,36px) clamp(14px,4vw,50px) 30px;display:none}
+.slide.on{display:block}
+.inner{max-width:1050px;margin:0 auto}
+
+/* fondos horribles pero con ilusión */
+.b1{background:radial-gradient(circle at 20% 20%,#ff00cc 0,transparent 40%),radial-gradient(circle at 80% 70%,#00e5ff 0,transparent 45%),linear-gradient(135deg,#5b00ff,#ff8a00)}
+.b2{background:repeating-linear-gradient(45deg,#fff200 0 22px,#ffb300 22px 44px)}
+.b3{background:linear-gradient(160deg,#00ffa3,#00b3ff 60%,#7a00ff)}
+.b4{background:radial-gradient(#ff5fa2 22%,transparent 23%) 0 0/34px 34px,#ffd6ec}
+.b5{background:linear-gradient(180deg,#ff2d2d,#ff9a00 50%,#fff200)}
+.b6{background:repeating-linear-gradient(90deg,#00d4ff 0 30px,#0099cc 30px 60px)}
+.b7{background:linear-gradient(135deg,#222,#7a00ff 50%,#ff0080)}
+.b8{background:radial-gradient(circle,#d7ff3a,#3aff9b 60%,#00c8ff)}
+.b9{background:repeating-conic-gradient(#ffe600 0 10deg,#ffffff 10deg 20deg)}
+.b10{background:linear-gradient(45deg,#ff0080,#ffe600,#00e5ff,#b6ff00,#ff0080);background-size:300% 300%;animation:shift 9s linear infinite}
+@keyframes shift{to{background-position:300% 300%}}
+@media (prefers-reduced-motion:reduce){.b10{animation:none}}
+
+/* tipografía "con intención" */
+.wordart{font-family:'Bangers','Impact',cursive;font-size:clamp(36px,9vw,96px);line-height:.98;margin:0 0 10px;background:linear-gradient(180deg,#fff200,#ff7a00 50%,#ff0055);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:2px #1a0033;filter:drop-shadow(5px 5px 0 #1a0033);transform:rotate(-3deg);letter-spacing:1px}
+h2.wordart{font-size:clamp(28px,6vw,60px)}
+.marker{font-family:'Permanent Marker','Comic Sans MS',cursive;font-weight:400}
+.sub{font-family:'Permanent Marker',cursive;font-weight:400;font-size:clamp(16px,2.6vw,26px);color:#fff;text-shadow:2px 2px 0 #1a0033;transform:rotate(1.5deg);margin:6px 0 16px}
+.card{background:#fffbe0;color:#1a0033;border:4px solid #1a0033;box-shadow:8px 8px 0 #1a0033;padding:14px 18px;margin:14px 0;border-radius:6px}
+.card.tilt{transform:rotate(-1deg)}
+.card.tilt2{transform:rotate(1.2deg)}
+.card h3{font-family:'Bangers',cursive;font-size:1.5em;margin:0 0 6px;letter-spacing:1px;color:#d4006a}
+.card p{margin:.3em 0}
+.card ul{margin:.3em 0;padding-left:1.2em}
+.sticker{display:inline-block;font-family:'Bangers',cursive;background:#ff0080;color:#fff200;border:3px dashed #fff;padding:8px 14px;transform:rotate(-6deg);box-shadow:4px 4px 0 #1a0033;font-size:1.15em;margin:6px 6px 6px 0}
+.sticker.g{background:#b6ff00;color:#1a0033;transform:rotate(5deg)}
+.sticker.c{background:#00e5ff;color:#1a0033;transform:rotate(-2deg)}
+.real{background:#1a0033;color:#b6ff00;border:3px solid #b6ff00;padding:8px 12px;margin:12px 0;font-family:'Comic Neue',cursive}
+.real b{color:#fff200}
+.grid{display:grid;gap:14px;grid-template-columns:1fr 1fr;align-items:start}
+@media(max-width:760px){.grid{grid-template-columns:1fr}}
+
+/* memes */
+.meme{background:#111;border:4px solid #fff;box-shadow:6px 6px 0 #1a0033;text-align:center;padding:8px;max-width:420px;margin:12px auto}
+.meme .t,.meme .bt{font-family:'Anton','Impact',sans-serif;text-transform:uppercase;color:#fff;font-size:clamp(18px,3.4vw,30px);line-height:1.05;text-shadow:2px 2px 0 #000,-2px -2px 0 #000,2px -2px 0 #000,-2px 2px 0 #000;font-weight:400;padding:4px}
+.meme .pic{font-size:clamp(54px,11vw,100px);line-height:1.1;padding:10px 0;background:linear-gradient(135deg,#444,#888);margin:4px 0}
+.drake{max-width:440px;margin:12px auto;border:4px solid #fff;box-shadow:6px 6px 0 #1a0033;background:#fff;color:#000}
+.drake .row{display:grid;grid-template-columns:110px 1fr;min-height:110px;align-items:center}
+.drake .row+.row{border-top:3px solid #000}
+.drake .face{font-size:64px;text-align:center;background:#ffcc66}
+.drake .row:nth-child(2) .face{background:#66ffaa}
+.drake .txt{padding:10px 12px;font-family:'Comic Neue',cursive;font-size:1em}
+.brain{max-width:460px;margin:12px auto;border:4px solid #fff;box-shadow:6px 6px 0 #1a0033;background:#fff;color:#000}
+.brain .row{display:grid;grid-template-columns:1fr 100px;align-items:center;min-height:62px}
+.brain .row+.row{border-top:3px solid #000}
+.brain .txt{padding:8px 12px}
+.brain .b{text-align:center;background:#222;font-size:32px;padding:6px;height:100%;display:flex;align-items:center;justify-content:center}
+.brain .row:nth-child(1) .b{font-size:20px}.brain .row:nth-child(2) .b{font-size:30px}.brain .row:nth-child(3) .b{font-size:42px}.brain .row:nth-child(4) .b{font-size:54px;background:radial-gradient(#fff200,#ff0080,#5b00ff)}
+
+/* gráficos */
+.chart{background:#fff;border:3px solid #1a0033;padding:8px;margin:12px 0;color:#1a0033}
+.chart h4{font-family:'Permanent Marker',cursive;font-weight:400;margin:0 0 4px;font-size:1.05em;text-align:center;color:#d4006a}
+.chart svg{width:100%;height:auto;display:block}
+.chart .cap{font-size:.78em;text-align:center;opacity:.8;margin-top:4px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.82em;margin-top:6px}
+.legend i{display:inline-block;width:12px;height:12px;border:2px solid #1a0033;margin-right:5px;vertical-align:-1px}
+.loadbar{height:34px;border:4px solid #1a0033;background:#fff;position:relative;overflow:hidden}
+.loadbar span{position:absolute;inset:0 auto 0 0;width:0%;background:repeating-linear-gradient(45deg,#ff0080 0 10px,#ff6aa8 10px 20px)}
+.loadbar em{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-style:normal;color:#1a0033;font-size:.9em}
+.gantt{display:grid;grid-template-columns:70px 1fr;gap:6px 10px;align-items:center;font-size:.92em}
+.gantt .bar{padding:6px 10px;border:3px solid #1a0033;color:#1a0033}
+
+/* fotos */
+.foto{position:relative;aspect-ratio:4/3;background:repeating-linear-gradient(45deg,#2b2b2b 0 12px,#3a3a3a 12px 24px);border:3px dashed #fff200;margin:4px 0;overflow:hidden}
+.foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none}
+.foto.ok{border-style:solid;border-color:#fff}
+.foto.ok img{display:block}
+.foto.ok .ph{display:none}
+.foto .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff200;font-family:'Bangers',cursive;font-size:1.5em;letter-spacing:1px;text-align:center;padding:8px}
+.foto .ph small{font-family:'Comic Neue',cursive;font-size:.5em;color:#fff;margin-top:4px}
+.pie{font-family:'Permanent Marker',cursive;font-weight:400;color:#fff;font-size:.95em;padding:4px 4px 2px;text-shadow:1px 1px 0 #000}
+/* memes de formato clásico */
+.dbf{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;text-align:center;padding:6px 0}
+.dbf .lab{font-family:'Anton','Impact',sans-serif;text-transform:uppercase;font-weight:400;color:#fff;font-size:clamp(11px,1.8vw,15px);line-height:1.1;background:#000;border:2px solid #fff;padding:3px;margin-bottom:4px;min-height:3.4em;display:flex;align-items:center;justify-content:center}
+.dbf .em{font-size:clamp(40px,8vw,70px);line-height:1.1}
+.dbf .col:nth-child(2) .em{transform:scaleX(1)}
+.twob{padding:6px 0;text-align:center}
+.twob .btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:6px}
+.twob .btn{background:#e8e8e8;color:#000;border:3px solid #000;border-radius:6px 6px 22px 22px;padding:10px 6px 16px;font-family:'Comic Neue',cursive;font-size:.85em;transform:rotate(-3deg);box-shadow:inset 0 -6px 0 #bbb}
+.twob .btn+.btn{transform:rotate(3deg)}
+.twob .sweat{font-size:clamp(46px,9vw,80px);line-height:1.1}
+/* navegación */
+#nav{display:flex;align-items:center;gap:10px;background:var(--nav);color:var(--navtext);padding:8px 12px calc(8px);font-family:'Bangers',cursive;letter-spacing:1px}
+#nav button{font-family:'Bangers',cursive;font-size:1.2em;background:#ff0080;color:#fff200;border:3px solid #fff200;padding:6px 16px;cursor:pointer;box-shadow:3px 3px 0 #000}
+#nav button:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #000}
+#nav button:focus-visible{outline:3px solid #00e5ff;outline-offset:2px}
+#prog{flex:1;height:14px;border:2px solid #fff200;background:#000;position:relative}
+#prog span{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,#b6ff00,#00e5ff);width:0}
+#count{min-width:62px;text-align:center}
+</style>
+</head>
+<body>
+<div id="deck">
+
+<!-- 1 PORTADA -->
+<section class="slide b1 on"><div class="inner">
+  <span class="sticker">🏆 Premio al Mejor Plan (autoconcedido)</span>
+  <h1 class="wordart">COPENHAGUE:<br>EL VIAJE</h1>
+  <div class="sub">de viernes a lunes · presentación 100% seria, por huguito ✨</div>
+  <div class="grid">
+    <div class="card tilt">
+      <h3>Objetivo del proyecto</h3>
+      <p>Hacer cuatro cosas que, por separado, ya son una idea rara. Juntas, son una <u>decisión de vida</u>.</p>
+      <span class="sticker g">⛷️ Esquí</span><span class="sticker c">🔬 Ciencia</span><span class="sticker">🎢 Tivoli</span><span class="sticker g">🥶 Chapuzón</span>
+    </div>
+    <div class="meme">
+      <div class="t">Nadie:</div>
+      <div class="pic">🧑‍🤝‍🧑⛷️🏭</div>
+      <div class="bt">Nosotros: esquiando sobre una incineradora</div>
+    </div>
+  </div>
+</div></section>
+
+<!-- 2 RESUMEN EJECUTIVO -->
+<section class="slide b2"><div class="inner">
+  <h2 class="wordart">RESUMEN EJECUTIVO</h2>
+  <div class="grid">
+    <div>
+      <div class="drake">
+        <div class="row"><div class="face">🙅‍♂️</div><div class="txt">Ver la Sirenita, hacerse la foto y a casa</div></div>
+        <div class="row"><div class="face">😎👉</div><div class="txt"><b>Esquiar en una central eléctrica en pleno Copenhague</b></div></div>
+      </div>
+      <div class="card tilt2">
+        <h3>Cargando sentido común…</h3>
+        <div class="loadbar"><span id="lb"></span><em id="lbt">0% — error 404</em></div>
+      </div>
+    </div>
+    <div class="card tilt">
+      <h3>Diagrama de Gantt (muy profesional)</h3>
+      <div class="gantt">
+        <b>Vie</b><div class="bar" style="background:#b6ff00">Llegar + esquí a lo loco</div>
+        <b>Sáb</b><div class="bar" style="background:#00e5ff">Experimentarium + Tivoli</div>
+        <b>Dom</b><div class="bar" style="background:#ff9bd0">Puerto 🥶 + excursión a Malmö (Suiza o algo asi)</div>
+        <b>Lun</b><div class="bar" style="background:#ffe600">Llorar en el aeropuerto</div>
+      </div>
+      <p class="marker" style="margin-top:10px;font-size:.95em">Presupuesto: sí.<br>Plan B: prolema de otro día.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- 3 VIERNES -->
+<section class="slide b3"><div class="inner">
+  <span class="sticker">VIERNES</span>
+  <h2 class="wordart">ESQUÍ EN LA CENTRAL ELÉCTRICA</h2>
+  <div class="grid">
+    <div>
+      <div class="card tilt">
+        <h3>El plan</h3>
+        <p>Aterrizamos, soltamos las maletas y nos vamos a esquiar al <b>CopenHill</b>: una planta de energía con pista de esquí en el tejado. Dinamarca no tiene montañas, así que se ha construido una encima de un sitio donde se quema basura. Ecológico, danés y absurdo: tres de tres.</p>
+        <ul><li>Pista en el tejado ✔</li><li>Humo (vapor) ✔</li><li>Dignidad en la bajada ✘</li></ul>
+      </div>
+      <div class="real"><b>Dato real:</b> la planta genera energía y calefacción a partir de residuos, y el tejado se usa como pista de esquí, ruta de senderismo y muro de escalada. Sí, todo a la vez.</div>
+    </div>
+    <div>
+      <div class="meme">
+        <div class="t">¿Y si esquiamos encima de la basura?</div>
+        <div class="pic">🏔️➡️🏭</div>
+        <div class="bt">Dinamarca: «sí, vale»</div>
+      </div>
+      <div class="chart">
+        <h4>Nivel de leyenda por lugar de esquí</h4>
+        <svg viewBox="0 0 300 120" role="img" aria-label="Gráfico absurdo de nivel de leyenda">
+          <text x="4" y="22" font-size="11" fill="#1a0033">Los Alpes</text>
+          <rect x="100" y="10" width="70" height="18" fill="#00b3ff" stroke="#1a0033" stroke-width="2"/>
+          <text x="176" y="23" font-size="10" fill="#1a0033">normal</text>
+          <text x="4" y="52" font-size="11" fill="#1a0033">Sierra Nevada</text>
+          <rect x="100" y="40" width="110" height="18" fill="#00ffa3" stroke="#1a0033" stroke-width="2"/>
+          <text x="216" y="53" font-size="10" fill="#1a0033">guay</text>
+          <text x="4" y="82" font-size="11" fill="#1a0033">Una incineradora</text>
+          <rect x="100" y="70" width="195" height="18" fill="#ff0080" stroke="#1a0033" stroke-width="2"/>
+          <text x="160" y="83" font-size="10" fill="#fff200">LEYENDA ABSOLUTA</text>
+          <text x="4" y="112" font-size="9" fill="#1a0033">Unidad: «una muy seria decidida por mi»</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- 4 EXPERIMENTARIUM -->
+<section class="slide b4"><div class="inner">
+  <span class="sticker c">SÁBADO MAÑANA</span>
+  <h2 class="wordart">EXPERIMENTARIUM</h2>
+  <div class="grid">
+    <div>
+      <div class="card tilt2">
+        <h3>El plan</h3>
+        <p>Museo de ciencia interactivo, pensado sobre todo para niños (nosotros). Nosotros iremos por «la cultura» y acabaremos peleándonos por quién toca el botón. Está en Hellerup, así que toca un ratito de transporte, pero merece el viaje.</p>
+        <p>Regla de oro: <b>si hay un botón, se pulsa</b>. Si hay una cola de niños de 7 años, se la respeta (más o menos)(si están los padres delante).</p>
+      </div>
+      <div class="real"><b>Dato real:</b> es uno de los grandes museos de ciencia de Dinamarca y casi todo está hecho para tocarlo, probarlo y trastear. Mirar sin tocar es del Louvre.</div>
+      <div class="meme">
+        <div class="t">Adultos en un museo de ciencia para niños</div>
+        <div class="pic">🧑‍🔬🔘🔘🔘</div>
+        <div class="bt">«Es por la divulgación científica»</div>
+      </div>
+    </div>
+    <div class="chart">
+      <h4>Motivos reales para ir al Experimentarium</h4>
+      <svg viewBox="0 0 40 40" role="img" aria-label="Gráfico circular absurdo">
+        <g transform="rotate(-90 20 20)" fill="none" stroke-width="20">
+          <circle cx="20" cy="20" r="10" pathLength="100" stroke="#00e5ff" stroke-dasharray="12 88" stroke-dashoffset="0"/>
+          <circle cx="20" cy="20" r="10" pathLength="100" stroke="#ff0080" stroke-dasharray="55 45" stroke-dashoffset="-12"/>
+          <circle cx="20" cy="20" r="10" pathLength="100" stroke="#b6ff00" stroke-dasharray="20 80" stroke-dashoffset="-67"/>
+          <circle cx="20" cy="20" r="10" pathLength="100" stroke="#ffe600" stroke-dasharray="13 87" stroke-dashoffset="-87"/>
+        </g>
+        <circle cx="20" cy="20" r="20" fill="none" stroke="#1a0033" stroke-width=".6"/>
+      </svg>
+      <div class="legend">
+        <span><i style="background:#00e5ff"></i>Aprender ciencia (12%)</span>
+        <span><i style="background:#ff0080"></i>Pulsar botones (55%)</span>
+        <span><i style="background:#b6ff00"></i>Fingir que acompañamos a un niño (20%)</span>
+        <span><i style="background:#ffe600"></i>Tienda de souvenirs (13%)</span>
+      </div>
+      <div class="cap">Fuente: es así fijo.</div>
+    </div>
+  </div>
+</div></section>
+
+<!-- 5 TIVOLI -->
+<section class="slide b5"><div class="inner">
+  <span class="sticker g">SÁBADO NOCHE</span>
+  <h2 class="wordart">TIVOLI GARDENS</h2>
+  <div class="grid">
+    <div>
+      <div class="card tilt">
+        <h3>El plan</h3>
+        <p>Jardines, luces, atracciones y montañas rusas en pleno centro. Subimos a todo lo que gire, caiga o dé vueltas, y luego intentamos cenar como personas normales (spoiler: no).</p>
+        <ul><li>Montaña rusa antes de cenar: <b>no</b></li><li>Montaña rusa después de cenar: <b>tampoco, pero lo haremos</b></li></ul>
+      </div>
+      <div class="real"><b>Dato real:</b> Tivoli abrió en 1843 y es uno de los parques de atracciones más antiguos del mundo. Llevamos casi dos siglos tardando en ir.</div>
+      <div class="meme">
+        <div class="t">Yo, diciendo «solo una atracción»</div>
+        <div class="pic">🎢🎡🎠🎪</div>
+        <div class="bt">Yo, 4 horas y 9 atracciones después</div>
+      </div>
+    </div>
+    <div class="chart">
+      <h4>Dinero en cartera vs. felicidad (Tivoli, 18h-00h)</h4>
+      <svg viewBox="0 0 300 190" role="img" aria-label="Gráfico de líneas absurdo">
+        <rect x="30" y="10" width="260" height="140" fill="#fffbe0" stroke="#1a0033" stroke-width="2"/>
+        <polyline points="35,30 80,48 125,72 170,100 215,125 260,143 285,146" fill="none" stroke="#ff0080" stroke-width="4"/>
+        <polyline points="35,120 80,88 125,60 170,34 215,28 250,60 285,135" fill="none" stroke="#00a870" stroke-width="4"/>
+        <text x="150" y="22" font-size="9" fill="#1a0033">🎢 pico de euforia</text>
+        <text x="215" y="125" font-size="9" fill="#1a0033">«uf, el perrito…(izeia)»</text>
+        <text x="36" y="168" font-size="10" fill="#1a0033">18h</text>
+        <text x="110" y="168" font-size="10" fill="#1a0033">21h</text>
+        <text x="190" y="168" font-size="10" fill="#1a0033">23h</text>
+        <text x="258" y="168" font-size="10" fill="#1a0033">00h</text>
+        <text x="4" y="82" font-size="9" fill="#1a0033" transform="rotate(-90 10 82)">cosas</text>
+      </svg>
+      <div class="legend">
+        <span><i style="background:#ff0080"></i>Dinero</span>
+        <span><i style="background:#00a870"></i>Felicidad</span>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- 6 PUERTO -->
+<section class="slide b6"><div class="inner">
+  <span class="sticker">DOMINGO MAÑANA</span>
+  <h2 class="wordart">BAÑO EN EL PUERTO</h2>
+  <div class="grid">
+    <div>
+      <div class="card tilt2">
+        <h3>El plan</h3>
+        <p>Los daneses se bañan en el puerto como si nada, así que nosotros también. Entramos con confianza, salimos con otra expresión facial. El agua nórdica no es fría: es <i>«refrescante»</i>.</p>
+        <p>Lo importante es meterse con estilo y salir con la cabeza alta (y los dedos de los pies en su sitio). Y después, secarse rápido, que por la tarde nos vamos a otro país.</p>
+      </div>
+      <div class="real"><b>Dato real:</b> Copenhague tiene zonas de baño en el puerto, y se pueden usar de verdad (en las habilitadas, claro). Ojo: dependen de la temporada, y fuera del verano el agua es cosa de valientes. Mira el apartado de letra pequeña.</div>
+      <div class="meme">
+        <div class="t">El agua: «está buenísima, te acostumbras»</div>
+        <div class="foto"><img data-foto="puerto" alt="Foto de Izeia en el agua del puerto"><div class="ph">📷 AQUÍ VA LA FOTO<small>(se cambia en FOTOS.puerto, al final del código)</small></div></div>
+        <div class="pie">La cara de Izeia</div>
+        
+      </div>
+    </div>
+    <div class="chart">
+      <h4>Estado vital tras 30 segundos en el agua</h4>
+      <svg viewBox="0 0 300 190" role="img" aria-label="Gráfico de barras absurdo">
+        <line x1="20" y1="150" x2="290" y2="150" stroke="#1a0033" stroke-width="2"/>
+        <rect x="35" y="130" width="40" height="20" fill="#00b3ff" stroke="#1a0033" stroke-width="2"/>
+        <rect x="95" y="142" width="40" height="8" fill="#ff9bd0" stroke="#1a0033" stroke-width="2"/>
+        <rect x="155" y="30" width="40" height="120" fill="#ff0080" stroke="#1a0033" stroke-width="2"/>
+        <rect x="215" y="148" width="40" height="2" fill="#1a0033"/>
+        <text x="40" y="166" font-size="9" fill="#1a0033">Temp.</text>
+        <text x="99" y="166" font-size="9" fill="#1a0033">Dignidad</text>
+        <text x="149" y="166" font-size="9" fill="#1a0033">Ganas de salir</text>
+        <text x="208" y="166" font-size="9" fill="#1a0033">Sentido común</text>
+        <text x="225" y="140" font-size="9" fill="#1a0033">n/d</text>
+        <text x="152" y="22" font-size="10" fill="#d4006a">¡¡MÁXIMO!!</text>
+      </svg>
+      <div class="cap">Eje Y: unidades de «ay».</div>
+    </div>
+  </div>
+</div></section>
+
+<!-- 7 MALMÖ -->
+<section class="slide b3"><div class="inner">
+  <span class="sticker g">DOMINGO TARDE</span>
+  <h2 class="wordart">EXCURSIÓN A MALMÖ 🇸🇪</h2>
+  <div class="grid">
+    <div>
+      <div class="card tilt">
+        <h3>El plan</h3>
+        <p>Tren desde Copenhague, cruzamos el puente de Øresund y en unos 35-40 minutos estamos en Suecia. Un país nuevo en el pasaporte sin madrugar demasiado: la excursión con mejor relación esfuerzo/anécdota del viaje.</p>
+        <ul><li>Paseo por el centro y el canal 🚶</li><li>Foto con el Turning Torso 🏙️</li><li>Falafel sueco (sí, existe) 🧆</li></ul>
+      </div>
+      <div class="real"><b>Dato real:</b> el Turning Torso es un rascacielos retorcido, obra del arquitecto Santiago Calatrava, y es el símbolo de Malmö. El puente de Øresund, además, salió en la serie «Puente de Øresund» (The Bridge), la de las pelis de detectives nórdicas.</div>
+    </div>
+    <div>
+      <div class="meme">
+        <div class="dbf">
+          <div class="col"><div class="lab">Copenhague</div><div class="em">😠👩</div></div>
+          <div class="col"><div class="lab">Nosotros</div><div class="em">🧔👀</div></div>
+          <div class="col"><div class="lab">Suecia (35 min en tren)</div><div class="em">💃🇸🇪</div></div>
+        </div>
+        <div class="bt">El novio distraído: edición viaje</div>
+      </div>
+      <div class="chart">
+        <h4>Emoción vs. distancia recorrida hacia Suecia</h4>
+        <svg viewBox="0 0 300 170" role="img" aria-label="Gráfico absurdo de emoción frente a distancia">
+          <rect x="30" y="10" width="260" height="120" fill="#fffbe0" stroke="#1a0033" stroke-width="2"/>
+          <polyline points="35,115 90,110 140,105 165,20 190,60 250,55 285,50" fill="none" stroke="#ff0080" stroke-width="4"/>
+          <text x="128" y="16" font-size="9" fill="#1a0033">¡¡PUENTE!!</text>
+          <text x="196" y="46" font-size="9" fill="#1a0033">«ya estoy en Suecia»</text>
+          <text x="34" y="148" font-size="10" fill="#1a0033">Copenhague</text>
+          <text x="140" y="148" font-size="10" fill="#1a0033">Øresund</text>
+          <text x="244" y="148" font-size="10" fill="#1a0033">Malmö</text>
+          <text x="4" y="82" font-size="9" fill="#1a0033" transform="rotate(-90 10 82)">emoción</text>
+        </svg>
+        <div class="cap">Se ve claramente un antes y un después del puente.</div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- 8 LUNES -->
+<section class="slide b7"><div class="inner">
+  <span class="sticker g">LUNES</span>
+  <h2 class="wordart">LA VUELTA (SNIF)</h2>
+  <div class="grid">
+    <div>
+      <div class="card tilt">
+        <h3>El plan</h3>
+        <p>Último café, última bollería danesa y camino al aeropuerto con cara de «¿ya?». Si sobra tiempo, paseíto por el centro o por Nyhavn para la foto de cierre.</p>
+        <p>Objetivo del lunes: <b>sobrevivir con dignidad</b> y empezar a organizar el próximo viaje antes de despegar.</p>
+      </div>
+      <div class="meme">
+        <div class="t">Lunes por la mañana</div>
+        <div class="pic">🧳😭✈️</div>
+        <div class="bt">Cuerpo en el aeropuerto, alma en el esquí</div>
+      </div>
+    </div>
+    <div class="card tilt2">
+      <h3>Diagrama de Venn (rigor científico)</h3>
+      <svg viewBox="0 0 300 180" role="img" aria-label="Diagrama de Venn absurdo" style="width:100%;height:auto">
+        <circle cx="105" cy="90" r="70" fill="#00e5ff" fill-opacity=".6" stroke="#1a0033" stroke-width="3"/>
+        <circle cx="195" cy="90" r="70" fill="#ff0080" fill-opacity=".55" stroke="#1a0033" stroke-width="3"/>
+        <text x="55" y="80" font-size="12" fill="#1a0033">Cosas</text>
+        <text x="45" y="96" font-size="12" fill="#1a0033">razonables</text>
+        <text x="193" y="80" font-size="12" fill="#1a0033">Lo que</text>
+        <text x="184" y="96" font-size="12" fill="#1a0033">vamos a hacer</text>
+        <text x="141" y="86" font-size="10" fill="#1a0033">🥐</text>
+        <text x="136" y="102" font-size="9" fill="#1a0033">bollería</text>
+      </svg>
+      <p style="text-align:center;font-size:.9em">La intersección es el único momento del viaje con sentido común.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- 9 ANALISIS -->
+<section class="slide b8"><div class="inner">
+  <h2 class="wordart">ANÁLISIS DE RIESGO</h2>
+  <div class="grid">
+    <div class="chart">
+      <h4>Matriz riesgo vs. diversión (avanzadísima)</h4>
+      <svg viewBox="0 0 300 200" role="img" aria-label="Matriz absurda de riesgo y diversión">
+        <rect x="30" y="10" width="260" height="160" fill="#fffbe0" stroke="#1a0033" stroke-width="2"/>
+        <line x1="160" y1="10" x2="160" y2="170" stroke="#1a0033" stroke-dasharray="4 4"/>
+        <line x1="30" y1="90" x2="290" y2="90" stroke="#1a0033" stroke-dasharray="4 4"/>
+        <text x="40" y="26" font-size="9" fill="#d4006a">Zona «me arrepentiré»</text>
+        <text x="190" y="26" font-size="9" fill="#00a870">Zona «leyenda»</text>
+        <text x="40" y="164" font-size="9" fill="#1a0033">Zona «aburrido»</text>
+        <text x="190" y="164" font-size="9" fill="#1a0033">(os jodeis pq me gusta)</text>
+        <circle cx="215" cy="55" r="9" fill="#ff0080" stroke="#1a0033" stroke-width="2"/><text x="170" y="48" font-size="9" fill="#1a0033">Esquí</text>
+        <circle cx="245" cy="38" r="9" fill="#ffe600" stroke="#1a0033" stroke-width="2"/><text x="224" y="64" font-size="9" fill="#1a0033">Puerto</text>
+        <circle cx="190" cy="78" r="9" fill="#00e5ff" stroke="#1a0033" stroke-width="2"/><text x="146" y="92" font-size="9" fill="#1a0033">Tivoli</text>
+        <circle cx="230" cy="112" r="9" fill="#b6ff00" stroke="#1a0033" stroke-width="2"/><text x="190" y="130" font-size="9" fill="#1a0033">Experimentarium</text>
+        <text x="130" y="188" font-size="10" fill="#1a0033">Riesgo →</text>
+        <text x="6" y="100" font-size="10" fill="#1a0033" transform="rotate(-90 12 100)">Diversión →</text>
+      </svg>
+      <div class="cap">Correlación detectada: más riesgo, mejor anécdota.</div>
+    </div>
+    <div>
+      <div class="brain">
+        <div class="row"><div class="txt">Pasear por Copenhague</div><div class="b">🧠</div></div>
+        <div class="row"><div class="txt">Ir a Tivoli</div><div class="b">🧠✨</div></div>
+        <div class="row"><div class="txt">Esquiar encima de una incineradora</div><div class="b">🧠⚡</div></div>
+        <div class="row"><div class="txt"><b>Bañarse en el puerto y luego ir a Tivoli sin secarse</b></div><div class="b">🌌</div></div>
+      </div>
+      <div class="meme">
+        <div class="twob">
+          <div class="btns"><div class="btn">Esquiar sobre una incineradora</div><div class="btn">Bañarse en el puerto</div></div>
+          <div class="sweat">😰</div>
+        </div>
+        <div class="bt">Los dos botones: «Lo haremos los dos»</div>
+      </div>
+      <div class="card tilt"><h3>Conclusión</h3><p>Los riesgos son manejables, las anécdotas son infinitas y el seguro de viaje, imprescindible.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- 10 LETRA PEQUEÑA -->
+<section class="slide b9"><div class="inner">
+  <h2 class="wordart">LETRA PEQUEÑA (EN SERIO)</h2>
+  <div class="card">
+    <h3>Antes de lanzarnos, un minuto de sensatez</h3>
+    <ul>
+      <li><b>Horarios y fechas:</b> comprobar qué está abierto en nuestras fechas. Tivoli y el Experimentarium tienen horarios y temporadas que cambian.</li>
+      <li><b>Esquí en CopenHill:</b> mirar si hay que reservar y si alquilan equipo allí mismo. Llevar ropa de abrigo y calcetines buenos.</li>
+      <li><b>Baño en el puerto:</b> solo en las zonas habilitadas, y comprobar si están abiertas fuera de la temporada de verano. Si no, hay que cambiar de plan (o buscar los clubes de baño de invierno).</li>
+      <li><b>Cuerpo humano:</b> el agua fría es seria. Entrar despacio, no ir solos, no meterse en sitios no habilitados (mariconadas, de cabeza directos).</li>
+      <li><b>Malmö (Suecia):</b> llevar documento de identidad en regla, mirar horarios y precios del tren, y recordar que allí la moneda son las coronas suecas, no las danesas.</li>
+      <li><b>Logística:</b> el Experimentarium está en Hellerup. Calcular el transporte y no encadenar medio plan en una sola tarde.</li>
+    </ul>
+  </div>
+  <div class="real"><b>Resumen:</b> los planes son de verdad, y los horarios hay que mirarlos antes de salir de casa ( o no).</div>
+</div></section>
+
+<!-- 11 FIN -->
+<section class="slide b10"><div class="inner" style="text-align:center">
+  <h1 class="wordart">¿PREGUNTAS?</h1>
+  <div class="sub">(Responder «no» es una respuesta válida)</div>
+  <div class="meme">
+    <div class="t">Cuando alguien dice «¿y si mejor hacemos algo tranquilo?»</div>
+    <div class="foto"><img data-foto="final" alt="Foto final de la presentación"><div class="ph">📷 AQUÍ VA OTRA FOTO<small>(se cambia en FOTOS.final, al final del código)</small></div></div>
+    <div class="bt">No. Nos vamos a Copenhague.</div>
+  </div>
+  <span class="sticker">Gracias por su atención</span><span class="sticker g">Aprobado por unanimidad (de uno)</span>
+</div></section>
+
+</div>
+
+<div id="nav">
+  <button id="prev" aria-label="Diapositiva anterior">◀ ATRÁS</button>
+  <div id="prog"><span></span></div>
+  <div id="count">1/11</div>
+  <button id="next" aria-label="Diapositiva siguiente">SIGUE ▶</button>
+</div>
+
+<script>
+(function(){
+  // ====== FOTOS: sustituye estas direcciones por las tuyas ======
+  // Ojo: en la página publicada solo cargan fotos incrustadas (data:image/jpeg;base64,...).
+  var FOTOS={
+    puerto:"C:/Users/hugo0/OneDrive/Escritorio/Grado IA/3o Curso/NLP and Analysys/foto ize.jpeg",
+    final:"C:/Users/hugo0/OneDrive/Escritorio/Grado IA/3o Curso/NLP and Analysys/WhatsApp Image 2026-10-07 at 22.29.09.jpeg"
+  };
+  // ===============================================================
+  [].slice.call(document.querySelectorAll('img[data-foto]')).forEach(function(img){
+    img.addEventListener('load',function(){img.parentNode.classList.add('ok')});
+    img.addEventListener('error',function(){img.parentNode.classList.remove('ok')});
+    img.src=FOTOS[img.getAttribute('data-foto')];
+  });
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var i=0, total=slides.length;
+  var count=document.getElementById('count'), bar=document.querySelector('#prog span');
+  var lb=document.getElementById('lb'), lbt=document.getElementById('lbt');
+  function show(n){
+    i=Math.max(0,Math.min(total-1,n));
+    slides.forEach(function(s,k){s.classList.toggle('on',k===i)});
+    slides[i].scrollTop=0;
+    count.textContent=(i+1)+'/'+total;
+    bar.style.width=((i+1)/total*100)+'%';
+    try{history.replaceState(null,'','#'+(i+1))}catch(e){}
+    if(i===1&&lb){
+      lb.style.transition='none';lb.style.width='0%';lbt.textContent='0% — error 404';
+      setTimeout(function(){lb.style.transition='width 1.4s';lb.style.width='3%';lbt.textContent='3% — y bajando'},60);
+    }
+  }
+  document.getElementById('prev').onclick=function(){show(i-1)};
+  document.getElementById('next').onclick=function(){show(i+1)};
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();show(i+1)}
+    if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();show(i-1)}
+    if(e.key==='Home')show(0);
+    if(e.key==='End')show(total-1);
+  });
+  var sx=null;
+  document.addEventListener('touchstart',function(e){sx=e.touches[0].clientX},{passive:true});
+  document.addEventListener('touchend',function(e){
+    if(sx===null)return;
+    var dx=e.changedTouches[0].clientX-sx;
+    if(Math.abs(dx)>60){show(dx<0?i+1:i-1)}
+    sx=null;
+  },{passive:true});
+  var h=parseInt((location.hash||'').slice(1),10);
+  show(isNaN(h)?0:h-1);
+})();
+</script>
+</body>
+</html>
